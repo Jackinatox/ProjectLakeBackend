@@ -1,4 +1,3 @@
-version: "3.7"
 services:
   pocketbase:
     image: spectado/pocketbase:latest
@@ -10,4 +9,8 @@ services:
       - ./data:/pb_data
       - ./public:/pb_public
       - ./migrations:/pb_migrations
-      - ./pb_hooks:/pb_hooks
+    develop:
+      watch:
+        - action: sync+restart
+          path: ./pb_hooks/*
+          target: /pb_hooks/

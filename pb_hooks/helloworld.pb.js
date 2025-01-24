@@ -1,2 +1,5 @@
-/// <reference path="../pb_data/types.d.ts" />
+/// <reference path="../data/types.d.ts" />
 
+routerAdd("GET", "/hello", (e) => {
+    return e.string(200, "Online")
+})
