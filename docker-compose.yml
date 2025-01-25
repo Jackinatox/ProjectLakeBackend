@@ -3,14 +3,16 @@ services:
     image: spectado/pocketbase:latest
     container_name: pocketbase_Lake
     restart: unless-stopped
+    environment:
+      # The / ajt the end is needed
+      - PT_PANEL=https://pt.scyed.com/
+      - PT_APPLICATION_KEY=ptla_qYdb5xE4KKrvTXUHR3ELjHTpYBYO8C7U9YwS36tnVW1
     ports:
       - "8090:80"
     volumes:
       - ./data:/pb_data
       - ./public:/pb_public
       - ./migrations:/pb_migrations
-    develop:
-      watch:
-        - action: sync+restart
-          path: ./pb_hooks/*
-          target: /pb_hooks/
+      - ./pb_hooks:/pb_hooks
+      - ./node_modules:/node_modules
+      - ./package.json:/package.json
